@@ -1,0 +1,5 @@
+sudo: required
+services: docker
+
+script:
+    - ./pipe_build_up_test.sh

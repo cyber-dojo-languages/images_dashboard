@@ -1,0 +1,15 @@
+
+version: '2'
+
+services:
+  images-dashboard:
+    user: root
+    image: ${IMAGES_DASHBOARD_IMAGE}
+    container_name: ${IMAGES_DASHBOARD_CONTAINER}
+    tmpfs: /tmp
+    build:
+      context: app
+      args:
+        - PORT=${IMAGES_DASHBOARD_PORT}
+    ports:
+      - ${IMAGES_DASHBOARD_PORT}:${IMAGES_DASHBOARD_PORT}

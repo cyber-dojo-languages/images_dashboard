@@ -1,0 +1,19 @@
+
+Travis does not show most recent run if commit does 'restart build'.
+
+Create a cyber-dojo-languages dashboard app (use raw rack server)
+Showing...
+
+each repo
+>>red/green status. In Log (last line)
+>>stateless or stateful. Make required. get dashboard working first.
+>>date of most recent build In Log
+>>duration of build In Log
+>>size of image? In Log
+>>Base image In Log
+>>red/amber/green times In Log
+
+Later. Have 2 URLs
+One for base images, has version numbers
+One for test-Framework imags
+easy to determine via last entry of triple
