@@ -7,6 +7,8 @@ services:
     image: ${IMAGES_DASHBOARD_IMAGE}
     container_name: ${IMAGES_DASHBOARD_CONTAINER}
     tmpfs: /tmp
+    environment:
+      - GITHUB_TOKEN
     build:
       context: app
       args:
