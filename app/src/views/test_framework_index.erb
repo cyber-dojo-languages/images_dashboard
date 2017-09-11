@@ -1,0 +1,21 @@
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Github</th>
+    <th>Travis</th>
+  </tr>
+<% @json.keys.each do |repo| %>
+  <tr>
+    <td>
+      <%= repo %>
+    </td>
+    <td>
+      <a href="https://github.com/cyber-dojo-languages/<%= repo %>">github</a>
+    </td>
+    <td>
+      <a href="https://travis-ci.org/cyber-dojo-languages/<%= repo %>">Travis</a>
+    </td>
+  </tr>
+<% end %>
+</table>

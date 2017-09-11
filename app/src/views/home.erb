@@ -3,12 +3,26 @@
 
 $(document).ready(function() {
 
+//<pre><%= JSON.pretty_unparse(@json) %></pre>
+
 });
 
 //--></script>
 
 <h1>images dashboard</h1>
 <pre><%= @repo %></pre>
-<pre><%= @log %></pre>
+<ul>
+  <li>Passed: <%= @passed %></li>
+  <li>Date: <%= @date %></li>
+  <li>Duration: <%= @duration %></li>
 
-<pre><%= JSON.pretty_unparse(@json) %></pre>
+  <li>ImageSize: <%= @size %></li>
+  <li>OS: <%= @os %></li>
+  <li>stateless<li>
+  <li>red: <%= @red %></li>
+  <li>green: <%= @green %></li>
+  <li>amber: <%= @amber %></li>
+  <li></li>
+</ul>
+
+<pre><%= @log %></pre>

@@ -1,0 +1,60 @@
+
+Travis does not show most recent run if commit does 'restart build'.
+
+Create a cyber-dojo-languages dashboard app (use raw rack server)
+
+$ travis show -r cyber-dojo-languages/gcc-assert
+Job #11.1:  force Travis build
+State:         passed
+Type:          push
+Branch:        master
+Compare URL:   https://github.com/cyber-dojo-languages/gcc-assert/compare/07cfa60b60bb...2e6ca442b04b
+Duration:      1 min 4 sec
+Started:       2017-09-10 09:26:18
+Finished:      2017-09-10 09:27:22
+Allow Failure: false
+Config:        os: linux
+
+..Duration
+..Date of last build
+..Red/Green
+
+
+Extra info, log Showing...
+
+each repo
+>>stateless or stateful. Make required. get dashboard working first.
+>>size of image? In Log
+>>Base image In Log
+>>red/amber/green times In Log
+
+Later. Have 2 URLs
+One for base images, has version numbers
+One for test-Framework imags
+easy to determine via last entry of triple
+
+- - - - - - - - - - - - - - - - - - - - - - - - -
+
+make basic working dashboard
+
+make runner_choice a required parameter in manifest.json
+and update [cyber-dojo start-point create] checking
+
+do Travis trigger for all base-images
+
+Alpine
+------
+alpine-glibc-3.6
+alpine-language-base-3.6
+clojure-1.8.0
+ruby-2.4.1
+rust-1.17.0
+java-1.8
+
+Ubuntu
+------
+ubuntu-build-essential-14.04
+ubuntu-build-essential-17.04
+
+
+
