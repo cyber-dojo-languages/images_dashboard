@@ -2,17 +2,15 @@
 
 $(document).ready(function() {
 
-  $('#load').click(function() {
-    $('tr[name]').each(function() {
-      const tr = $(this);
-      const repo = tr.attr('name');
-      $.ajax({
-        url: '/build?repo='+repo,
-        success: function(build){
-          $('td span.status', tr).html(build.status);
-          $('td span.time',   tr).html(build.time);
-        }
-      });
+  $('tr[name]').each(function() {
+    const tr = $(this);
+    const repo = tr.attr('name');
+    $.ajax({
+      url: '/build?repo='+repo,
+      success: function(build){
+        $('td span.status', tr).html(build.status);
+        $('td span.time',   tr).html(build.time);
+      }
     });
   });
 
@@ -21,7 +19,6 @@ $(document).ready(function() {
 //--></script>
 
 <h1>Languages<h1>
-<button id="load">Load</button>
 <table>
   <tr>
     <th>Name</th>
@@ -42,10 +39,10 @@ $(document).ready(function() {
       <span class="time"></span>
     </td>
     <td>
-      <a href="https://github.com/cyber-dojo-languages/<%= repo %>">github</a>
+      <a href="https://github.com/cyber-dojo-languages/<%= repo %>" target="_blank">github</a>
     </td>
     <td>
-      <a href="https://travis-ci.org/cyber-dojo-languages/<%= repo %>">Travis</a>
+      <a href="https://travis-ci.org/cyber-dojo-languages/<%= repo %>" target="_blank">Travis</a>
     </td>
   </tr>
 <% end %>
