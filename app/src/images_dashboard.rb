@@ -51,7 +51,7 @@ class ImagesDashboard < Sinatra::Base
   include AssertSystem
 
   def curled_triples
-    assert_system "curl --silent -o /tmp/#{triples_filename} #{triples_url}"
+    assert_system "curl --silent --output /tmp/#{triples_filename} #{triples_url}"
     JSON.parse(IO.read("/tmp/#{triples_filename}"))
   end
 
