@@ -1,4 +1,4 @@
-FROM  cyberdojofoundation/gcc-alpine:5.3.0
+FROM  cyberdojofoundation/gcc-alpine:6.3.0
 LABEL maintainer=jon@jaggersoft.com
 
 RUN apk update \
