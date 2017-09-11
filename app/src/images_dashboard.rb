@@ -2,13 +2,19 @@ require 'sinatra/base'
 require 'json'
 require_relative 'assert_system'
 
-# https://docs.travis-ci.com/api
-
 class ImagesDashboard < Sinatra::Base
+
+  get '/' do
+    @json = curled_triples
+    erb :home
+  end
+
+  # - - - - - - - - - - - - - - -
 
   get '/languages/index' do
     @json = curled_triples.select { |repo_name| repo_name =~ /\d/ }
     @json.delete('bash-shunit2')
+    @repos = @json.keys
     erb :languages_index
   end
 
@@ -20,41 +26,24 @@ class ImagesDashboard < Sinatra::Base
         !(repo_name =~ /\d/)
     }
     @json.delete('elm-test-bad-manifest-for-testing')
+    @repos = @json.keys
     erb :test_framework_index
   end
 
   # - - - - - - - - - - - - - - -
 
-  get '/' do
-    @json = curled_triples
-
-    assert_system "travis login --skip-completion-check --github-token ${GITHUB_TOKEN}"
-    token = assert_backtick('travis token --org').strip
-    assert_system 'travis logout'
-
-    @repo = 'rust-test' # one of @json.keys
-    @log = assert_backtick "travis logs --skip-completion-check --org --token #{token} --repo #{cdl}/#{@repo}"
-    lines = @log.split("\n")
-    @passed = lines[-1].include? 'Done. Your build exited with 0.'
-
-    n = lines.index('# print_date_time')
-    @date = lines[n+1]
-    @duration = lines[n+2][7..-1]
-
-    n = lines.index('# print_image_info')
-    @size = lines[n+1].split[-2..-1].join(' ')
-    words = lines[n+2].split
-    n = words.index('Alpine') || words.index('Ubuntu')
-    @os = words[n..-1].join(' ')
-
-    # test-framework only
-    n = lines.index('# check_start_point_src_red_green_amber_using_runner_stateless')
-    @red   = lines[n+1][12..-2]
-    @green = lines[n+2][14..-2]
-    @amber = lines[n+3][14..-2]
-
-    erb :home
+  get '/build' do
+    repo = params[:repo]
+    # https://docs.travis-ci.com/api
+    info = `travis show --org --skip-completion-check -r #{cdl}/#{repo}`
+    lines = info.split("\n")
+    status = lines[1].split[-1]
+    time = lines[5].split[1..-1].join(' ')
+    content_type :json
+    { :status => status, :time => time }.to_json
   end
+
+  # - - - - - - - - - - - - - - -
 
   private
 

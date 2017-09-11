@@ -1,14 +1,45 @@
+<script type="text/javascript"><!--
 
+$(document).ready(function() {
+
+  $('#load').click(function() {
+    $('tr[name]').each(function() {
+      const tr = $(this);
+      const repo = tr.attr('name');
+      $.ajax({
+        url: '/build?repo='+repo,
+        success: function(build){
+          $('td span.status', tr).html(build.status);
+          $('td span.time',   tr).html(build.time);
+        }
+      });
+    });
+  });
+
+});
+
+//--></script>
+
+<h1>Test-Frameworks<h1>
+<button id="load">Load</button>
 <table>
   <tr>
     <th>Name</th>
-    <th>Github</th>
-    <th>Travis</th>
+    <th name="status">Status</th>
+    <th name="time">Time (s)</th>
+    <th name="github"></th>
+    <th name="travis"></th>
   </tr>
-<% @json.keys.each do |repo| %>
-  <tr>
+<% @repos.each do |repo| %>
+  <tr name="<%= repo %>">
     <td>
       <%= repo %>
+    </td>
+    <td>
+      <span class="status"></span>
+    </td>
+    <td>
+      <span class="time"></span>
     </td>
     <td>
       <a href="https://github.com/cyber-dojo-languages/<%= repo %>">github</a>

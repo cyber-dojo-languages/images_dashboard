@@ -1,0 +1,24 @@
+@media screen {
+
+    * {
+        font-family: "Impact";
+        font-size: 20px;
+    }
+
+    body {
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    table td, table th {
+      text-align: right;
+    }
+    table th[name=status] { width: 150px; }
+    table th[name=time]   { width: 150px; }
+    table th[name=github] { width: 150px; }
+    table th[name=travis] { width: 150px; }
+}
+
