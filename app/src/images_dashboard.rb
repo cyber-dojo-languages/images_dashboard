@@ -35,7 +35,7 @@ class ImagesDashboard < Sinatra::Base
   get '/build' do
     repo = params[:repo]
     # https://docs.travis-ci.com/api
-    info = `travis show --org --skip-completion-check -r #{cdl}/#{repo}`
+    info = `travis show --org --skip-completion-check --repo #{cdl}/#{repo}`
     lines = info.split("\n")
     status = lines[1].split[-1]
     time = lines[5].split[1..-1].join(' ')
