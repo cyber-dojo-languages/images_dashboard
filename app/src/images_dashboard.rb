@@ -11,23 +11,23 @@ class ImagesDashboard < Sinatra::Base
 
   # - - - - - - - - - - - - - - -
 
-  get '/languages/index' do
+  get '/languages' do
     @json = curled_triples.select { |repo_name| repo_name =~ /\d/ }
     @json.delete('bash-shunit2')
     @repos = @json.keys
-    erb :languages_index
+    erb :languages
   end
 
   # - - - - - - - - - - - - - - -
 
-  get '/test_framework/index' do
+  get '/test_frameworks' do
     @json = curled_triples.select { |repo_name|
       (repo_name == 'bash-shunit2') ||
         !(repo_name =~ /\d/)
     }
     @json.delete('elm-test-bad-manifest-for-testing')
     @repos = @json.keys
-    erb :test_framework_index
+    erb :test_frameworks
   end
 
   # - - - - - - - - - - - - - - -
@@ -39,8 +39,9 @@ class ImagesDashboard < Sinatra::Base
     lines = info.split("\n")
     status = lines[1].split[-1]
     time = lines[5].split[1..-1].join(' ')
+    date = lines[6].split[1..-1].join(' ')
     content_type :json
-    { :status => status, :time => time }.to_json
+    { :status => status, :time => time, :date => date }.to_json
   end
 
   # - - - - - - - - - - - - - - -

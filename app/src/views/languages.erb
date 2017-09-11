@@ -8,8 +8,15 @@ $(document).ready(function() {
     $.ajax({
       url: '/build?repo='+repo,
       success: function(build){
+        if (build.status === 'failed') {
+          build.status = '<span style="color:red;">failed</span>'
+        }
+        if (build.status === 'passed') {
+          build.status = '<span style="color:green;">passed</span>'
+        }
         $('td span.status', tr).html(build.status);
         $('td span.time',   tr).html(build.time);
+        $('td span.date',   tr).html(build.date);
       }
     });
   });
@@ -18,12 +25,13 @@ $(document).ready(function() {
 
 //--></script>
 
-<h1>Test-Frameworks<h1>
+<h1>Languages<h1>
 <table>
   <tr>
     <th>Name</th>
     <th name="status">Status</th>
-    <th name="time">Time (s)</th>
+    <th name="time">Time</th>
+    <th name="date">Date</th>
     <th name="github"></th>
     <th name="travis"></th>
   </tr>
@@ -37,6 +45,9 @@ $(document).ready(function() {
     </td>
     <td>
       <span class="time"></span>
+    </td>
+    <td>
+      <span class="date"></span>
     </td>
     <td>
       <a href="https://github.com/cyber-dojo-languages/<%= repo %>" target="_blank">github</a>
