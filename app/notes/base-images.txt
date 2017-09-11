@@ -1,0 +1,14 @@
+
+Alpine
+------
+alpine-glibc-3.6
+alpine-language-base-3.6
+clojure-1.8.0
+ruby-2.4.1
+rust-1.17.0
+java-1.8
+
+Ubuntu
+------
+ubuntu-build-essential-14.04
+ubuntu-build-essential-17.04

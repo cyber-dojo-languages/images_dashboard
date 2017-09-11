@@ -1,9 +1,10 @@
 
 Travis does not show most recent run if commit does 'restart build'.
 
-Create a cyber-dojo-languages dashboard app (use raw rack server)
+Create a cyber-dojo-languages dashboard app
+TODO: use raw rack server
 
-$ travis show -r cyber-dojo-languages/gcc-assert
+$ travis show --repo cyber-dojo-languages/gcc-assert
 Job #11.1:  force Travis build
 State:         passed
 Type:          push
@@ -37,31 +38,6 @@ One for test-Framework imags
 easy to determine via last entry of triple
 
 - - - - - - - - - - - - - - - - - - - - - - - - -
-
-make basic working dashboard
-
-make runner_choice a required parameter in manifest.json
-and update [cyber-dojo start-point create] checking
-
-do Travis trigger for all base-images
-
-Alpine
-------
-alpine-glibc-3.6
-alpine-language-base-3.6
-clojure-1.8.0
-ruby-2.4.1
-rust-1.17.0
-java-1.8
-
-Ubuntu
-------
-ubuntu-build-essential-14.04
-ubuntu-build-essential-17.04
-
-
-
-
 
   get '/unused' do
     assert_system "travis login --skip-completion-check --github-token ${GITHUB_TOKEN}"
