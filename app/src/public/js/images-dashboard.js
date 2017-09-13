@@ -1,11 +1,11 @@
 
-window.reload = function(id) {
+window.reload = function(id,org) {
   const space = ' ';
   $(id + space + 'tr[name]').each(function() {
     const tr = $(this);
     const repo = tr.attr('name');
     $.ajax({
-      url: '/build?repo='+repo,
+      url: '/build?org='+org+'&repo='+repo,
       success: function(build) {
         if (build.status === 'failed') {
           build.status = '<span style="color:red;">failed</span>'

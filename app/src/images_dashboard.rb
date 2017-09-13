@@ -5,19 +5,7 @@ require_relative 'assert_system'
 class ImagesDashboard < Sinatra::Base
 
   get '/home' do
-    @services_repos = %w(
-      collector
-      commander
-      differ
-      grafana
-      nginx
-      prometheus
-      runner
-      runner_stateless
-      storer
-      web
-      zipper
-    )
+    @services_repos = service_repos
 
     @json = curled_triples
 
@@ -39,9 +27,10 @@ class ImagesDashboard < Sinatra::Base
 
   get '/build' do
     content_type :json
+    org = params[:org]
     repo = params[:repo]
     # https://docs.travis-ci.com/api
-    info = `travis show --org --skip-completion-check --repo #{cdl}/#{repo}`
+    info = `travis show --org --skip-completion-check --repo #{org}/#{repo}`
     lines = info.split("\n")
     status = lines[1].split[-1]
     time = lines[5].split[1..-1].join(' ')
@@ -55,6 +44,21 @@ class ImagesDashboard < Sinatra::Base
 
   include AssertSystem
 
+  def service_repos
+    %w( collector
+        commander
+        differ
+        grafana
+        nginx
+        prometheus
+        runner
+        runner_stateless
+        storer
+        web
+        zipper
+    )
+  end
+
   def curled_triples
     assert_system "curl --silent --output /tmp/#{triples_filename} #{triples_url}"
     JSON.parse(IO.read("/tmp/#{triples_filename}"))
@@ -66,10 +70,6 @@ class ImagesDashboard < Sinatra::Base
 
   def triples_filename
     'images_info.json'
-  end
-
-  def cdl
-    'cyber-dojo-languages'
   end
 
 end
