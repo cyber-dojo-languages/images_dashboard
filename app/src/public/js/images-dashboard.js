@@ -1,6 +1,7 @@
 
-window.reload = function() {
-  $('tr[name]').each(function() {
+window.reload = function(id) {
+  const space = ' ';
+  $(id + space + 'tr[name]').each(function() {
     const tr = $(this);
     const repo = tr.attr('name');
     $.ajax({

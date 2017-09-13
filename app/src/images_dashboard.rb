@@ -5,6 +5,20 @@ require_relative 'assert_system'
 class ImagesDashboard < Sinatra::Base
 
   get '/home' do
+    @services_repos = %w(
+      collector
+      commander
+      differ
+      grafana
+      nginx
+      prometheus
+      runner
+      runner_stateless
+      storer
+      web
+      zipper
+    )
+
     @json = curled_triples
 
     temp = @json.select { |repo_name| repo_name =~ /\d/ }

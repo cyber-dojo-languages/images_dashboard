@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 
-  const id = '#languages';
+  const id = '#services';
   const space = ' ';
   $(id + space + 'button').click(reload(id));
 
@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 //--></script>
 
-<div id="languages">
+<div id="services">
   <button>reload</button>
   <table>
     <tr>
@@ -21,17 +21,17 @@ $(document).ready(function() {
       <th name="github"></th>
       <th name="travis"></th>
     </tr>
-    <% @languages_repos.each do |repo| %>
+    <% @services_repos.each do |repo| %>
       <tr name="<%= repo %>">
         <td><%= repo %></td>
         <td><span class="status"></span></td>
         <td><span class="time"></span></td>
         <td><span class="date"></span></td>
         <td>
-          <a href="https://github.com/cyber-dojo-languages/<%= repo %>" target="_blank">github</a>
+          <a href="https://github.com/cyber-dojo/<%= repo %>" target="_blank">github</a>
         </td>
         <td>
-          <a href="https://travis-ci.org/cyber-dojo-languages/<%= repo %>" target="_blank">Travis</a>
+          <a href="https://travis-ci.org/cyber-dojo/<%= repo %>" target="_blank">Travis</a>
         </td>
       </tr>
     <% end %>
