@@ -18,3 +18,6 @@ bundle install
 ./up.sh
 ```
 
+![services](img/services.png?raw=true "services")
+![languages](img/languages.png?raw=true "languages")
+![test frameworks](img/test-frameworks.png?raw=true "test frameworks")
