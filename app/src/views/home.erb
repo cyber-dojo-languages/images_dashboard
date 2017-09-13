@@ -1,4 +1,26 @@
+<script type="text/javascript"><!--
 
-<h1>images_info (json)</h1>
+$(document).ready(function() {
 
-<pre><%= JSON.pretty_generate(@json) %></pre>
+  $( "#tabs" ).tabs();
+
+});
+
+//--></script>
+
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">JSON</a></li>
+    <li><a href="#tabs-2">Languages</a></li>
+    <li><a href="#tabs-3">TestFrameworks</a></li>
+  </ul>
+  <div id="tabs-1">
+    <%= erb :json %>
+  </div>
+  <div id="tabs-2">
+    <%= erb :languages %>
+  </div>
+  <div id="tabs-3">
+    <%= erb :test_frameworks %>
+  </div>
+</div>

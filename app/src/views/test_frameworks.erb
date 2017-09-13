@@ -2,30 +2,14 @@
 
 $(document).ready(function() {
 
-  $('tr[name]').each(function() {
-    const tr = $(this);
-    const repo = tr.attr('name');
-    $.ajax({
-      url: '/build?repo='+repo,
-      success: function(build) {
-        if (build.status === 'failed') {
-          build.status = '<span style="color:red;">failed</span>'
-        }
-        if (build.status === 'passed') {
-          build.status = '<span style="color:green;">passed</span>'
-        }
-        $('td span.status', tr).html(build.status);
-        $('td span.time',   tr).html(build.time);
-        $('td span.date',   tr).html(build.date);
-      }
-    });
-  });
+  $('#test-frameworks').click(reload);
 
 });
 
 //--></script>
 
-<h1>Test-Frameworks<h1>
+<button id="test-frameworks">reload</button>
+
 <table>
   <tr>
     <th>Name</th>
@@ -35,7 +19,7 @@ $(document).ready(function() {
     <th name="github"></th>
     <th name="travis"></th>
   </tr>
-<% @repos.each do |repo| %>
+<% @test_frameworks_repos.each do |repo| %>
   <tr name="<%= repo %>">
     <td>
       <%= repo %>
