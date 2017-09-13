@@ -22,8 +22,8 @@ $(document).ready(function() {
       <th name="github"></th>
       <th name="travis"></th>
     </tr>
-    <% @languages_repos.each do |repo| %>
-      <tr name="<%= repo %>">
+    <% @languages_repos.each_with_index do |repo,index| %>
+      <tr even="<%= index%2 == 0 %>" name="<%= repo %>">
         <td><%= repo %></td>
         <td><span class="status"></span></td>
         <td><span class="time"></span></td>

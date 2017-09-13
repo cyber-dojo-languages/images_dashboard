@@ -8,10 +8,16 @@
     table td, table th {
       text-align: right;
     }
-    table th[name=status] { width: 150px; }
+
+    table th { text-decoration: underline; }
+
+    table th[name=name]   { width: 160px; }
+    table th[name=status] { width: 120px; }
     table th[name=time]   { width: 150px; }
     table th[name=date]   { width: 180px; }
-    table th[name=github] { width: 150px; }
-    table th[name=travis] { width: 150px; }
+    table th[name=github] { width: 100px; }
+    table th[name=travis] { width: 100px; }
+
+    table tr[even='true'] { background-color: salmon; }
 }
 

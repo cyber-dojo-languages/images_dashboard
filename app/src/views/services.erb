@@ -15,15 +15,15 @@ $(document).ready(function() {
   <button>reload</button>
   <table>
     <tr>
-      <th>Name</th>
+      <th name="name">Name</th>
       <th name="status">Status</th>
       <th name="time">Time</th>
       <th name="date">Date</th>
       <th name="github"></th>
       <th name="travis"></th>
     </tr>
-    <% @services_repos.each do |repo| %>
-      <tr name="<%= repo %>">
+    <% @services_repos.each_with_index do |repo,index| %>
+      <tr even="<%= index%2 == 0 %>" name="<%= repo %>">
         <td><%= repo %></td>
         <td><span class="status"></span></td>
         <td><span class="time"></span></td>
