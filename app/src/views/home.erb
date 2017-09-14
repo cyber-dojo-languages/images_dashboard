@@ -11,20 +11,20 @@ $(document).ready(function() {
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1">web-services</a></li>
-    <li><a href="#tabs-2">json</a></li>
-    <li><a href="#tabs-3">languages</a></li>
-    <li><a href="#tabs-4">test-frameworks</a></li>
+    <li><a href="#tabs-2">languages</a></li>
+    <li><a href="#tabs-3">test-frameworks</a></li>
+    <li><a href="#tabs-4">json</a></li>
   </ul>
   <div id="tabs-1">
     <%= erb :services %>
   </div>
   <div id="tabs-2">
-    <%= erb :json %>
-  </div>
-  <div id="tabs-3">
     <%= erb :languages %>
   </div>
-  <div id="tabs-4">
+  <div id="tabs-3">
     <%= erb :test_frameworks %>
+  </div>
+  <div id="tabs-4">
+    <%= erb :json %>
   </div>
 </div>
