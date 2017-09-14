@@ -5,7 +5,10 @@ $(document).ready(function() {
   const id = '#test-frameworks';
   const org = 'cyber-dojo-languages';
   const space = ' ';
-  $(id + space + 'button').click(reload(id,org));
+  $(id + space + 'button').click(function() {
+    reload(id,org);
+  });
+  reload(id,org);
 
 });
 
