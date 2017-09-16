@@ -54,6 +54,7 @@ class ImagesDashboard < Sinatra::Base
         runner
         runner_stateless
         storer
+        system-tests
         web
         zipper
     )
