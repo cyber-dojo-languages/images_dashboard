@@ -9,7 +9,7 @@
       text-align: right;
     }
 
-    table th { text-decoration: underline; }
+    table th { font-size: 12px; }
 
     table th[name=name]   { width: 160px; }
     table th[name=status] { width: 120px; }
