@@ -51,7 +51,7 @@ class ImagesDashboard < Sinatra::Base
         grafana
         nginx
         prometheus
-        runner
+        runner_stateful
         runner_stateless
         storer
         system-tests
