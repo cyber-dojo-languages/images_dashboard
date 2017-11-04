@@ -8,7 +8,8 @@ RUN apk add ruby-dev ruby libffi-dev curl bash \
     && gem install bundler --no-rdoc --no-ri
 
 COPY Gemfile .
-RUN bundle install
+RUN  bundle config --global silence_root_warning 1 \
+  && bundle install
 
 COPY . /app
 WORKDIR /app

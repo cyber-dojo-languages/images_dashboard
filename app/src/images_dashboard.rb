@@ -20,6 +20,10 @@ class ImagesDashboard < Sinatra::Base
     temp.delete('elm-test-bad-manifest-for-testing')
     @test_frameworks_repos = temp.keys
 
+    @tools_repos = [
+      'image_builder'
+    ]
+
     erb :home
   end
 
