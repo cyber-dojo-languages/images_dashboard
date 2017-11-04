@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'json'
+require 'time_difference'
 require_relative 'assert_system'
 
 class ImagesDashboard < Sinatra::Base
@@ -35,16 +36,47 @@ class ImagesDashboard < Sinatra::Base
     repo = params[:repo]
     # https://docs.travis-ci.com/api
     info = `travis show --org --skip-completion-check --repo #{org}/#{repo}`
-    lines = info.split("\n")
-    status = lines[1].split[-1]
-    time = lines[5].split[1..-1].join(' ')
-    date = lines[6].split[1..-1].join(' ')
-    { :status => status, :time => time, :date => date }.to_json
+    begin
+      lines = info.split("\n")
+      { :status => Xstatus(lines),
+        :ago => ago(lines),
+        :took => took(lines)
+      }.to_json
+    rescue Exception => e
+      { :status => lines.join('<br/>') + '<br/>' + e.message,
+        :ago => '?',
+        :took => '?'
+      }.to_json
+    end
   end
 
   # - - - - - - - - - - - - - - -
 
   private
+
+  def Xstatus(lines) # don't call this status!
+    # 'State: passed'
+    found = lines.find { |line| line.strip.start_with? 'State:' }
+    found.split(':')[1].strip # 'passed'
+  end
+
+  def ago(lines)
+    # Finished: 2017-11-04 08:55:32
+    found = lines.find { |line| line.strip.start_with? 'Finished:' }
+    f = found.split('Finished:')[1].strip
+    # '2017-11-04 08:55:32'
+    built_on = DateTime.parse(f)
+    ago = TimeDifference.between(built_on, DateTime.now).humanize
+    # '22 Hours, 36 Minutes and 28 Seconds' => '22 Hours'
+    # '23 Hours and 53 Seconds' => '23 Hours'
+    '~' + ago.split(',')[0].split('and')[0].strip + ' ago'
+  end
+
+  def took(lines)
+    # Duration: 1 min 38 sec
+    found = lines.find { |line| line.strip.start_with? 'Duration:' }
+    found.split(':')[1].strip # '1 min 38 sec'
+  end
 
   include AssertSystem
 

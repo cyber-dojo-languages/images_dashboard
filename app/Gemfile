@@ -6,6 +6,7 @@ ruby "2.4.2"
 gem "sinatra", '~> 1.4.7'
 gem 'json'
 gem 'travis'
+gem 'time_difference'
 
 group :development, :test do
   gem 'rake', '~> 11.2.2'

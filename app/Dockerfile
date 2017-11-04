@@ -4,7 +4,7 @@ LABEL maintainer=jon@jaggersoft.com
 RUN apk update \
  && apk upgrade
 
-RUN apk add ruby-dev ruby libffi-dev curl bash \
+RUN apk add ruby-dev ruby-bigdecimal ruby libffi-dev curl bash \
     && gem install bundler --no-rdoc --no-ri
 
 COPY Gemfile .
