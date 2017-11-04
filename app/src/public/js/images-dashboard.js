@@ -5,7 +5,7 @@ window.reload = function(id,org) {
     const tr = $(this);
     const repo = tr.attr('name');
     $('td span.status', tr).html('');
-    $('td span.ago',    tr).html('');
+    $('td span.age',    tr).html('');
     $('td span.took',   tr).html('');
   });
 
@@ -13,19 +13,20 @@ window.reload = function(id,org) {
     const tr = $(this);
     const repo = tr.attr('name');
     $.ajax({
-      url: '/build?org='+org+'&repo='+repo,
+      url: `/build?org=${org}&repo=${repo}`,
       success: function(build) {
-        if (build.status === 'failed') {
-          build.status = '<span style="color:red;">failed</span>';
+        var colour, html;
+        switch (build.status) {
+          case 'failed':
+            colour = 'red'; break;
+          case 'passed':
+            colour = 'green'; break;
+          default:
+            colour = 'black'; break;
         }
-        else if (build.status === 'passed') {
-          build.status = '<span style="color:green;">passed</span>';
-        }
-        else {
-          build.status = '<span style="color:black;">:' + build.status + ':</span>';
-        }
-        $('td span.status', tr).html(build.status);
-        $('td span.ago',    tr).html(build.ago);
+        html = `<span style="color:${colour};">${build.status}</span>`;
+        $('td span.status', tr).html(html);
+        $('td span.age',    tr).html(build.age);
         $('td span.took',   tr).html(build.took);
       }
     });

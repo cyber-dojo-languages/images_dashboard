@@ -39,12 +39,12 @@ class ImagesDashboard < Sinatra::Base
     begin
       lines = info.split("\n")
       { :status => Xstatus(lines),
-        :ago => ago(lines),
+        :age => age(lines),
         :took => took(lines)
       }.to_json
     rescue Exception => e
       { :status => lines.join('<br/>') + '<br/>' + e.message,
-        :ago => '?',
+        :age => '?',
         :took => '?'
       }.to_json
     end
@@ -55,21 +55,25 @@ class ImagesDashboard < Sinatra::Base
   private
 
   def Xstatus(lines) # don't call this status!
-    # 'State: passed'
+    # 'State: passed|failed|started'
     found = lines.find { |line| line.strip.start_with? 'State:' }
     found.split(':')[1].strip # 'passed'
   end
 
-  def ago(lines)
+  def age(lines)
     # Finished: 2017-11-04 08:55:32
     found = lines.find { |line| line.strip.start_with? 'Finished:' }
-    f = found.split('Finished:')[1].strip
-    # '2017-11-04 08:55:32'
-    built_on = DateTime.parse(f)
-    ago = TimeDifference.between(built_on, DateTime.now).humanize
-    # '22 Hours, 36 Minutes and 28 Seconds' => '22 Hours'
-    # '23 Hours and 53 Seconds' => '23 Hours'
-    '~' + ago.split(',')[0].split('and')[0].strip + ' ago'
+    finished = found.split('Finished:')[1].strip
+    if finished == 'not yet'
+      '...'
+    else
+      # '2017-11-04 08:55:32'
+      built_on = DateTime.parse(finished)
+      ago = TimeDifference.between(built_on, DateTime.now).humanize
+      # '22 Hours, 36 Minutes and 28 Seconds' => '22 Hours'
+      # '23 Hours and 53 Seconds' => '23 Hours'
+      ago.split(',')[0].split('and')[0].strip
+    end
   end
 
   def took(lines)

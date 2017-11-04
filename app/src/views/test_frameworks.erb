@@ -20,7 +20,7 @@ $(document).ready(function() {
     <tr>
       <th>image name</th>
       <th name="status">status</th>
-      <th name="ago">built</th>
+      <th name="age">~age</th>
       <th name="took">took</th>
       <th name="github"></th>
       <th name="travis"></th>
@@ -29,7 +29,7 @@ $(document).ready(function() {
       <tr even="<%= index%2 == 0 %>" name="<%= repo %>">
         <td><%= repo %></td>
         <td><span class="status"></span></td>
-        <td><span class="ago"></span></td>
+        <td><span class="age"></span></td>
         <td><span class="took"></span></td>
         <td>
           <a href="https://github.com/cyber-dojo-languages/<%= repo %>" target="_blank">github</a>
