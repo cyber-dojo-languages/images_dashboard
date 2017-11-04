@@ -1,0 +1,43 @@
+<script type="text/javascript"><!--
+
+$(document).ready(function() {
+
+  const id = '#tools';
+  const org = 'cyber-dojo';
+  const space = ' ';
+  $(id + space + 'button').click(function() {
+    reload(id,org);
+  });
+  reload(id,org);
+
+});
+
+//--></script>
+
+<div id="tools">
+  <button>reload</button>
+  <table>
+    <tr>
+      <th name="name">image name</th>
+      <th name="status">status</th>
+      <th name="time">build took</th>
+      <th name="date">built on</th>
+      <th name="github"></th>
+      <th name="travis"></th>
+    </tr>
+    <% @tools_repos.each_with_index do |repo,index| %>
+      <tr even="<%= index%2 == 0 %>" name="<%= repo %>">
+        <td><%= repo %></td>
+        <td><span class="status"></span></td>
+        <td><span class="time"></span></td>
+        <td><span class="date"></span></td>
+        <td>
+          <a href="https://github.com/cyber-dojo-languages/<%= repo %>" target="_blank">github</a>
+        </td>
+        <td>
+          <a href="https://travis-ci.org/cyber-dojo-languages/<%= repo %>" target="_blank">Travis</a>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
