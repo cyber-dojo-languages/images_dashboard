@@ -1,7 +1,7 @@
 
 window.reload = function(id,org) {
-  const space = ' ';
-  $(id + space + 'tr[name]').each(function() {
+
+  $(`{id} tr[name]`).each(function() {
     const tr = $(this);
     const repo = tr.attr('name');
     $('td span.state', tr).html('');
@@ -9,7 +9,7 @@ window.reload = function(id,org) {
     $('td span.took',  tr).html('');
   });
 
-  $(id + space + 'tr[name]').each(function() {
+  $(`{id} tr[name]`).each(function() {
     const tr = $(this);
     const repo = tr.attr('name');
     $.ajax({

@@ -4,11 +4,10 @@ $(document).ready(function() {
 
   const id = '#services';
   const org = 'cyber-dojo';
-  const space = ' ';
-  $(id + space + 'button').click(function() {
-    reload(id,org);
+  $(`{id} button`).click(function() {
+    reload(id, org);
   });
-  reload(id,org);
+  reload(id, org);
 
 });
 
