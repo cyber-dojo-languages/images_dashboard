@@ -31,6 +31,9 @@ class ImagesDashboard < Sinatra::Base
   # - - - - - - - - - - - - - - -
 
   get '/build' do
+    # TODO: put failing tests at top of table,
+    # rest alphabetically underneath.
+
     content_type :json
     org = params[:org]
     repo = params[:repo]
