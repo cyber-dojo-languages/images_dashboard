@@ -38,12 +38,12 @@ class ImagesDashboard < Sinatra::Base
     info = `travis show --org --skip-completion-check --repo #{org}/#{repo}`
     begin
       lines = info.split("\n")
-      { :status => Xstatus(lines),
+      { :state => state(lines),
         :age => age(lines),
         :took => took(lines)
       }.to_json
     rescue Exception => e
-      { :status => lines.join('<br/>') + '<br/>' + e.message,
+      { :state => lines.join('<br/>') + '<br/>' + e.message,
         :age => '?',
         :took => '?'
       }.to_json
@@ -54,7 +54,7 @@ class ImagesDashboard < Sinatra::Base
 
   private
 
-  def Xstatus(lines) # don't call this status!
+  def state(lines)
     # 'State: passed|failed|started'
     found = lines.find { |line| line.strip.start_with? 'State:' }
     found.split(':')[1].strip # 'passed'

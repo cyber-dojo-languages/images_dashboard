@@ -12,7 +12,7 @@
     table th { font-size: 12px; }
 
     table th[name=name  ] { width: 160px; }
-    table th[name=status] { width: 120px; }
+    table th[name=state ] { width: 120px; }
     table th[name=age   ] { width: 150px; }
     table th[name=took  ] { width: 150px; }
     table th[name=github] { width: 100px; }

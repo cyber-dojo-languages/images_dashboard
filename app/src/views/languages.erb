@@ -19,7 +19,7 @@ $(document).ready(function() {
   <table>
     <tr>
       <th>image name</th>
-      <th name="status">status</th>
+      <th name="state">state</th>
       <th name="age">~age</th>
       <th name="took">took</th>
       <th name="github"></th>
@@ -28,7 +28,7 @@ $(document).ready(function() {
     <% @languages_repos.each_with_index do |repo,index| %>
       <tr even="<%= index%2 == 0 %>" name="<%= repo %>">
         <td><%= repo %></td>
-        <td><span class="status"></span></td>
+        <td><span class="state"></span></td>
         <td><span class="age"></span></td>
         <td><span class="took"></span></td>
         <td>

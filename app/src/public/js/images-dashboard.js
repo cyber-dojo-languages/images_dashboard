@@ -4,9 +4,9 @@ window.reload = function(id,org) {
   $(id + space + 'tr[name]').each(function() {
     const tr = $(this);
     const repo = tr.attr('name');
-    $('td span.status', tr).html('');
-    $('td span.age',    tr).html('');
-    $('td span.took',   tr).html('');
+    $('td span.state', tr).html('');
+    $('td span.age',   tr).html('');
+    $('td span.took',  tr).html('');
   });
 
   $(id + space + 'tr[name]').each(function() {
@@ -16,7 +16,7 @@ window.reload = function(id,org) {
       url: `/build?org=${org}&repo=${repo}`,
       success: function(build) {
         var colour, html;
-        switch (build.status) {
+        switch (build.state) {
           case 'failed':
             colour = 'red'; break;
           case 'passed':
@@ -24,10 +24,10 @@ window.reload = function(id,org) {
           default:
             colour = 'black'; break;
         }
-        html = `<span style="color:${colour};">${build.status}</span>`;
-        $('td span.status', tr).html(html);
-        $('td span.age',    tr).html(build.age);
-        $('td span.took',   tr).html(build.took);
+        html = `<span style="color:${colour};">${build.state}</span>`;
+        $('td span.state', tr).html(html);
+        $('td span.age',   tr).html(build.age);
+        $('td span.took',  tr).html(build.took);
       }
     });
   });
