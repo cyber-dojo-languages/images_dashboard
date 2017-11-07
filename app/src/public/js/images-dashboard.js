@@ -1,7 +1,7 @@
 
 window.reload = function(id,org) {
 
-  $(`{id} tr[name]`).each(function() {
+  $(id + 'tr[name]').each(function() {
     const tr = $(this);
     const repo = tr.attr('name');
     $('td span.state', tr).html('');
@@ -9,11 +9,11 @@ window.reload = function(id,org) {
     $('td span.took',  tr).html('');
   });
 
-  $(`{id} tr[name]`).each(function() {
+  $(id + ' tr[name]').each(function() {
     const tr = $(this);
     const repo = tr.attr('name');
     $.ajax({
-      url: `/build?org=${org}&repo=${repo}`,
+      url: '/build?org='+org+'&repo='+repo,
       success: function(build) {
         var colour, html;
         switch (build.state) {
@@ -24,7 +24,7 @@ window.reload = function(id,org) {
           default:
             colour = 'black'; break;
         }
-        html = `<span style="color:${colour};">${build.state}</span>`;
+        html = '<span style="color:'+colour+';">'+build.state+'</span>';
         $('td span.state', tr).html(html);
         $('td span.age',   tr).html(build.age);
         $('td span.took',  tr).html(build.took);

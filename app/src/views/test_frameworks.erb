@@ -4,7 +4,7 @@ $(document).ready(function() {
 
   const id = '#test-frameworks';
   const org = 'cyber-dojo-languages';
-  $(`{id} button`).click(function() {
+  $(id + ' button').click(function() {
     reload(id, org);
   });
   reload(id, org);
