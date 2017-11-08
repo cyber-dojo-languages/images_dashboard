@@ -5,7 +5,7 @@ require_relative 'assert_system'
 
 class ImagesDashboard < Sinatra::Base
 
-  get '/home' do
+  get '/' do
     @services_repos = service_repos
 
     @json = curled_triples
