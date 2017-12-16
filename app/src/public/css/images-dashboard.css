@@ -17,7 +17,7 @@
     table th[name=took  ]    { width: 130px; }
     table th[name=github]    { width:  80px; }
     table th[name=travis]    { width:  80px; }
-    table th[name=dockerhub] { width: 100px; }
+    table th[name=dockerhub] { width: 120px; }
 
     table tr[even='true'] { background-color: salmon; }
 
