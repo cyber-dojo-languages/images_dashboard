@@ -6,25 +6,11 @@ require_relative 'assert_system'
 class ImagesDashboard < Sinatra::Base
 
   get '/' do
-    @services_repos = service_repos
-
     @json = curled_triples
-
-    temp = @json.select { |repo_name| repo_name =~ /\d/ }
-    temp.delete('bash-shunit2')
-    @languages_repos = temp.keys
-
-    temp = @json.select { |repo_name|
-      (repo_name == 'bash-shunit2') ||
-        !(repo_name =~ /\d/)
-    }
-    temp.delete('elm-test-bad-manifest-for-testing')
-    @test_frameworks_repos = temp.keys
-
-    @tools_repos = [
-      'image_builder'
-    ]
-
+    @services = service_repos
+    @languages = @json.select { |repo,hash| !hash['test_framework'] }
+    @test_frameworks = @json.select { |repo,hash| hash['test_framework'] }
+    @tools = [ 'image_builder' ]
     erb :home
   end
 

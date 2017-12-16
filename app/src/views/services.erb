@@ -23,8 +23,9 @@ $(document).ready(function() {
       <th name="took">took</th>
       <th name="github"></th>
       <th name="travis"></th>
+      <th name="dockerhub"></th>
     </tr>
-    <% @services_repos.each_with_index do |repo,index| %>
+    <% @services.each_with_index do |repo,index| %>
       <tr even="<%= index%2 == 0 %>" name="<%= repo %>">
         <td><%= repo %></td>
         <td><span class="state"></span></td>
@@ -35,6 +36,9 @@ $(document).ready(function() {
         </td>
         <td>
           <a href="https://travis-ci.org/cyber-dojo/<%= repo %>" target="_blank">Travis</a>
+        </td>
+        <td>
+          <a href="https://hub.docker.com/r/cyberdojo/<%= repo %>/tags" target="_blank">Dockerhub</a>
         </td>
       </tr>
     <% end %>

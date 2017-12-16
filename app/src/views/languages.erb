@@ -23,8 +23,9 @@ $(document).ready(function() {
       <th name="took">took</th>
       <th name="github"></th>
       <th name="travis"></th>
+      <th name="dockerhub"></th>
     </tr>
-    <% @languages_repos.each_with_index do |repo,index| %>
+    <% @languages.keys.sort.each_with_index do |repo,index| %>
       <tr even="<%= index%2 == 0 %>" name="<%= repo %>">
         <td><%= repo %></td>
         <td><span class="state"></span></td>
@@ -35,6 +36,10 @@ $(document).ready(function() {
         </td>
         <td>
           <a href="https://travis-ci.org/cyber-dojo-languages/<%= repo %>" target="_blank">Travis</a>
+        </td>
+        <td>
+          <% image_name = @languages[repo]['image_name'].split(':')[0] %>
+          <a href="https://hub.docker.com/r/<%= image_name %>/tags" target="_blank">Dockerhub</a>
         </td>
       </tr>
     <% end %>

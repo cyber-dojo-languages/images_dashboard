@@ -11,12 +11,13 @@
 
     table th { font-size: 12px; }
 
-    table th[name=name  ] { width: 170px; }
-    table th[name=state ] { width:  90px; }
-    table th[name=age   ] { width: 110px; }
-    table th[name=took  ] { width: 130px; }
-    table th[name=github] { width:  80px; }
-    table th[name=travis] { width:  80px; }
+    table th[name=name  ]    { width: 170px; }
+    table th[name=state ]    { width:  90px; }
+    table th[name=age   ]    { width: 110px; }
+    table th[name=took  ]    { width: 130px; }
+    table th[name=github]    { width:  80px; }
+    table th[name=travis]    { width:  80px; }
+    table th[name=dockerhub] { width: 100px; }
 
     table tr[even='true'] { background-color: salmon; }
 
