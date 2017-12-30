@@ -1,15 +1,25 @@
-FROM  cyberdojofoundation/gcc-alpine:6.3.0
+#FROM  cyberdojofoundation/gcc-alpine:6.3.0
+FROM  alpine:latest
 LABEL maintainer=jon@jaggersoft.com
 
 RUN apk update \
  && apk upgrade
 
-RUN apk add ruby-dev ruby-bigdecimal ruby libffi-dev curl bash \
-    && gem install bundler --no-rdoc --no-ri
+RUN apk add \
+  bash \
+  curl \
+  libffi-dev \
+  ruby-dev \
+  ruby-bigdecimal \
+  ruby-bundler
 
 COPY Gemfile .
-RUN  bundle config --global silence_root_warning 1 \
-  && bundle install
+
+RUN apk --update --no-cache add --virtual build-dependencies build-base \
+ && bundle config --global silence_root_warning 1 \
+ && bundle install \
+ && apk del build-dependencies build-base \
+ && rm -vrf /var/cache/apk/*
 
 COPY . /app
 WORKDIR /app
