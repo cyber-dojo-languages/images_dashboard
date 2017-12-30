@@ -1,4 +1,3 @@
-#FROM  cyberdojofoundation/gcc-alpine:6.3.0
 FROM  alpine:latest
 LABEL maintainer=jon@jaggersoft.com
 
@@ -9,9 +8,9 @@ RUN apk add \
   bash \
   curl \
   libffi-dev \
-  ruby-dev \
   ruby-bigdecimal \
-  ruby-bundler
+  ruby-bundler \
+  ruby-dev
 
 COPY Gemfile .
 
