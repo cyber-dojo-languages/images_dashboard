@@ -83,6 +83,7 @@ class ImagesDashboard < Sinatra::Base
         runner_processful
         runner_stateful
         runner_stateless
+        runner-stateless
         starter
         storer
         system-tests
