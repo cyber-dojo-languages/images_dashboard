@@ -74,14 +74,14 @@ class ImagesDashboard < Sinatra::Base
   include AssertSystem
 
   def service_repos
+    #runner-processful
     %w( collector
         commander
         differ
         grafana
         nginx
         prometheus
-        runner_processful
-        runner_stateful
+        runner-stateful
         runner-stateless
         starter
         storer
