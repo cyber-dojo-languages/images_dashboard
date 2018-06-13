@@ -77,6 +77,7 @@ class ImagesDashboard < Sinatra::Base
     #runner-processful
     %w( collector
         commander
+        cyber-dojo
         differ
         grafana
         nginx
