@@ -8,8 +8,10 @@ class ImagesDashboard < Sinatra::Base
   get '/' do
     @json = curled_triples
     @services = service_repos
-    @languages       = @json.select { |_repo,hash| !hash['test_framework'] }
-    @test_frameworks = @json.select { |_repo,hash|  hash['test_framework']  }
+    @test_frameworks,@languages =
+      @json.partition { |_repo,hash|
+        hash['test_framework']
+      }.map(&:to_h)
     @tools = [ 'image_builder' ]
     erb :home
   end
