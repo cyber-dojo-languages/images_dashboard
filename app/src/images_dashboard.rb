@@ -80,15 +80,18 @@ class ImagesDashboard < Sinatra::Base
     %w( collector
         commander
         cyber-dojo
+        docker-base
         differ
         grafana
         nginx
         prometheus
+        rack-base
         runner-stateful
         runner-stateless
         starter
         storer
         system-tests
+        web-base
         web
         zipper
     )
