@@ -76,7 +76,6 @@ class ImagesDashboard < Sinatra::Base
   include AssertSystem
 
   def service_repos
-    #runner-processful
     %w( collector
         commander
         cyber-dojo
@@ -90,6 +89,8 @@ class ImagesDashboard < Sinatra::Base
         runner-stateless
         starter
         storer
+        saver
+        porter
         system-tests
         web-base
         web
