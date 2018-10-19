@@ -1,14 +1,12 @@
 <script type="text/javascript"><!--
 
-$(document).ready(function() {
-
+$().ready(() => {
   const id = '#languages';
   const org = 'cyber-dojo-languages';
-  $(id + ' button').click(function() {
+  $(id + ' button').click(() => {
     reload(id, org);
   });
   reload(id, org);
-
 });
 
 //--></script>
