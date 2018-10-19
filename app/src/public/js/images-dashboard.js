@@ -1,9 +1,9 @@
+"use strict";
 
 window.reload = (id,org) => {
 
-  $(id + ' tr[name]').each(function() {
-    const tr = $(this);
-    const repo = tr.attr('name');
+  $(id + ' tr[name]').each((_,tr) => {
+    const repo = $(tr).attr('name');
     $.ajax({
       url: '/build?org='+org+'&repo='+repo,
       success: (build) => {
@@ -21,7 +21,7 @@ window.reload = (id,org) => {
       case 'passed':
         return coloured('green',value);
       default:
-        return coloured('black', value);
+        return coloured('black',value);
     }
   };
 
@@ -29,7 +29,7 @@ window.reload = (id,org) => {
     if (value.includes('Day') || value.includes('Week') || value.includes('Month'))
       return coloured('red',value);
     else
-      return coloured('black', value);
+      return coloured('black',value);
   };
 
   const coloured = (colour, value) => {
