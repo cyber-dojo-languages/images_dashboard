@@ -1,7 +1,7 @@
 
-window.reload = function(id,org) {
+window.reload = (id,org) => {
 
-  $(id + 'tr[name]').each(function() {
+  $(id + 'tr[name]').each(() => {
     const tr = $(this);
     const repo = tr.attr('name');
     $('td span.state', tr).html('');
@@ -9,7 +9,7 @@ window.reload = function(id,org) {
     $('td span.took',  tr).html('');
   });
 
-  const html_state = (value) => {
+  const coloured_state = (value) => {
     let colour = '';
     switch (value) {
       case 'failed':
@@ -22,14 +22,23 @@ window.reload = function(id,org) {
     return '<span style="color:'+colour+';">'+value+'</span>';
   };
 
+  const coloured_age = (value) => {
+    let colour = '';
+    if (value.includes('Day') || value.includes('Week') || value.includes('Month'))
+      colour = 'red';
+    else
+      colour = 'black';
+    return '<span style="color:'+colour+';">'+value+'</span>';
+  };
+
   $(id + ' tr[name]').each(function() {
     const tr = $(this);
     const repo = tr.attr('name');
     $.ajax({
       url: '/build?org='+org+'&repo='+repo,
-      success: function(build) {
-        $('td span.state', tr).html(html_state(build.state));
-        $('td span.age',   tr).html(build.age);
+      success: (build) => {
+        $('td span.state', tr).html(coloured_state(build.state));
+        $('td span.age',   tr).html(coloured_age(build.age));
         $('td span.took',  tr).html(build.took);
       }
     });
