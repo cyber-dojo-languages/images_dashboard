@@ -5,7 +5,7 @@ window.reload = (id,org) => {
   $(id + ' tr[name]').each((_,tr) => {
     const repo = $(tr).attr('name');
     $.ajax({
-      url: '/build?org='+org+'&repo='+repo,
+      url: `/build?org=${org}&repo=${repo}`,
       success: (build) => {
         $('td span.state', tr).html(coloured_state(build.state));
         $('td span.age',   tr).html(coloured_age(build.age));
@@ -14,22 +14,34 @@ window.reload = (id,org) => {
     });
   });
 
-  const coloured_state = (value) => {
-    switch (value) {
+  const coloured_state = (state) => {
+    switch (state) {
       case 'failed':
-        return coloured('red',value);
+        return red(state);
       case 'passed':
-        return coloured('green',value);
+        return green(state);
       default:
-        return coloured('black',value);
+        return black(state);
     }
   };
 
-  const coloured_age = (value) => {
-    if (value.includes('Day') || value.includes('Week') || value.includes('Month'))
-      return coloured('red',value);
+  const coloured_age = (age) => {
+    if (age.includes('Day') || age.includes('Week') || age.includes('Month'))
+      return red(age);
     else
-      return coloured('black',value);
+      return black(age);
+  };
+
+  const red = (value) => {
+    return coloured('red',value);
+  };
+
+  const green = (value) => {
+    return coloured('green',value);
+  };
+
+  const black = (value) => {
+    return coloured('black',value);
   };
 
   const coloured = (colour, value) => {
