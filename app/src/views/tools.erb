@@ -3,10 +3,7 @@
 $().ready(() => {
   const id = '#tools';
   const org = 'cyber-dojo-languages';
-  $(id + ' button').click(() => {
-    reload(id, org);
-  });
-  reload(id, org);
+  $(id + ' button').click(() => { reload(id, org); }).click();
 });
 
 //--></script>
