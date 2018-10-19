@@ -15,25 +15,24 @@ window.reload = (id,org) => {
   });
 
   const coloured_state = (value) => {
-    let colour = '';
     switch (value) {
       case 'failed':
-        colour = 'red'; break;
+        return coloured('red',value);
       case 'passed':
-        colour = 'green'; break;
+        return coloured('green',value);
       default:
-        colour = 'black'; break;
+        return coloured('black', value);
     }
-    return '<span style="color:'+colour+';">'+value+'</span>';
   };
 
   const coloured_age = (value) => {
-    let colour = '';
     if (value.includes('Day') || value.includes('Week') || value.includes('Month'))
-      colour = 'red';
+      return coloured('red',value);
     else
-      colour = 'black';
-    return '<span style="color:'+colour+';">'+value+'</span>';
+      return coloured('black', value);
   };
 
+  const coloured = (colour, value) => {
+    return '<span style="color:'+colour+';">'+value+'</span>';
+  };
 };
