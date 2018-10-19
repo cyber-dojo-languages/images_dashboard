@@ -1,12 +1,17 @@
 
 window.reload = (id,org) => {
 
-  $(id + 'tr[name]').each(() => {
+  $(id + ' tr[name]').each(function() {
     const tr = $(this);
     const repo = tr.attr('name');
-    $('td span.state', tr).html('');
-    $('td span.age',   tr).html('');
-    $('td span.took',  tr).html('');
+    $.ajax({
+      url: '/build?org='+org+'&repo='+repo,
+      success: (build) => {
+        $('td span.state', tr).html(coloured_state(build.state));
+        $('td span.age',   tr).html(coloured_age(build.age));
+        $('td span.took',  tr).html(build.took);
+      }
+    });
   });
 
   const coloured_state = (value) => {
@@ -31,16 +36,4 @@ window.reload = (id,org) => {
     return '<span style="color:'+colour+';">'+value+'</span>';
   };
 
-  $(id + ' tr[name]').each(function() {
-    const tr = $(this);
-    const repo = tr.attr('name');
-    $.ajax({
-      url: '/build?org='+org+'&repo='+repo,
-      success: (build) => {
-        $('td span.state', tr).html(coloured_state(build.state));
-        $('td span.age',   tr).html(coloured_age(build.age));
-        $('td span.took',  tr).html(build.took);
-      }
-    });
-  });
 };
