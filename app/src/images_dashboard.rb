@@ -76,16 +76,15 @@ class ImagesDashboard < Sinatra::Base
   include AssertSystem
 
   def service_repos
-    %w( collector
-        commander
+    %w( commander
         cyber-dojo
         docker-base
         differ
         grafana
+        inserter
         nginx
         prometheus
         rack-base
-        runner-stateful
         runner-stateless
         starter
         storer
