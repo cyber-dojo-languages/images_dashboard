@@ -86,6 +86,10 @@ class ImagesDashboard < Sinatra::Base
         prometheus
         rack-base
         runner-stateless
+        start-points-base
+        start-points-custom
+        start-points-exercises
+        start-points-languages
         starter
         storer
         saver
